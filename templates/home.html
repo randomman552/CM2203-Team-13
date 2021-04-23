@@ -4,11 +4,20 @@ Stock Corp.
 {% endblock title %}
 
 {% block homeheader %}
+<div class="px-4 py-5 my-5 text-center">
+  <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename = 'img/default_logo.png') }}" alt="" width="92" height="77">
   <h1 class="display-5 fw-bold"> Stock Corp</h1>
-{% endblock homeheader %}
-
-{% block lead %}
+<div class="col-lg-6 mx-auto">
   <p class="lead mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lectus lorem,
     feugiat non placerat sit amet, laoreet et neque. Sed eget nibh interdum, imperdiet velit sit amet,
     volutpat nibh. </p>
-{% endblock lead %}
+  <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+    <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Primary button</button>
+    <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
+  </div>
+</div>
+</div>
+{% endblock homeheader %}
+
+{% block content %}
+{% endblock content %}
