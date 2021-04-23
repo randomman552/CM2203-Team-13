@@ -1,0 +1,14 @@
+Setup guide:
+
+If you haven't already, first clone the repo with the command:
+git clone https://git.cardiff.ac.uk/c1946278/informatics-team-13.git
+
+Now do these:
+python -m venv venv
+venv\Scripts\activate
+python -m pip install -r requirements.txt
+set FLASK_APP=wsgi
+set FLASK_DEBUG=True
+
+Now everything is setup. Whenever you want to run the flask server, do this (make sure you're in (venv) mode):
+flask run
