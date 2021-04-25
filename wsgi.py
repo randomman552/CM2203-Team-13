@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for
 from forms import InputStockForm
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = '33410096fed9b9c3b64e94d4cbef7440'
+app.config['SECRET_KEY'] = '2c8553196a4dafa672b8c68d70a24e21eedb937d'
 
 @app.route("/")
 @app.route("/home")
@@ -16,3 +16,6 @@ def input_stock():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# For openshift deployment to work, app needs to be called application
+application = app
