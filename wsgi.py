@@ -2,6 +2,8 @@ from flask import Flask, render_template, url_for
 from forms import InputStockForm
 app = Flask(__name__)
 
+# 2c8553196a4dafa672b8c68d70a24e21eedb937d
+
 app.config['SECRET_KEY'] = '2c8553196a4dafa672b8c68d70a24e21eedb937d'
 
 @app.route("/")
