@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Response, jsonify, abort
 from Finance_Pull import *
 from forms import InputStockForm
 from machine_learning.naive_bayes import classify, get_summaries
@@ -9,6 +9,11 @@ app.config['SECRET_KEY'] = '2c8553196a4dafa672b8c68d70a24e21eedb937d'
 
 # Train naive bayes, or get previous training
 app.config['ML_SUMMARIES'] = get_summaries()
+
+
+@app.errorhandler(404)
+def api_fetch_failed(e):
+    return jsonify(error=str(e)), 404
 
 
 @app.route("/")
@@ -26,8 +31,12 @@ def input_stock():
 
 @app.route("/stock/<stockTicker>")
 def input_stock_post(stockTicker):
-    stock = stock_page(stockTicker)
-    return render_template('stock.html', title=stockTicker, stock=stock)
+    try:
+        stock = stock_page(stockTicker)
+    except RuntimeError:
+        abort(404, description="API Fetch limit reached.")
+    else:
+        return render_template('stock.html', title=stockTicker, stock=stock, )
 
 
 @app.route("/evaluate/<symbol>")

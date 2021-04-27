@@ -1,3 +1,4 @@
+from functools import lru_cache
 from pprint import pprint
 
 import requests
@@ -11,9 +12,9 @@ headers = {
     # Hayes2: dbd23c2e57msh0de22e14f38eda0p1c3f84jsn621b3a32ceab
     'x-rapidapi-host': "alpha-vantage.p.rapidapi.com"
 }
-gen_fetch = {}
 
 
+@lru_cache(maxsize=10)
 def Apigenfetch(stockname):
     querystring = {"function": "GLOBAL_QUOTE", "symbol": stockname}
     response = requests.request("GET", url, headers=headers, params=querystring)
@@ -22,13 +23,13 @@ def Apigenfetch(stockname):
     contentpredict = ast.literal_eval(dict_str)
     try:
         contentdict = contentpredict['Global Quote']
-    except:
-        print("ERROR: Apigenfetch API limit reached, cannot request for a minute.")
-        return {}
+    except KeyError:
+        raise RuntimeError("Apigenfetch API limit reached, cannot request for a minute.")
     else:
         return contentdict
 
 
+@lru_cache(maxsize=10)
 def Apihistfetch(stockname):
     querystring = {"function": "TIME_SERIES_DAILY", "symbol": stockname, "outputsize": "full"}
     response = requests.request("GET", url, headers=headers, params=querystring)
@@ -37,13 +38,13 @@ def Apihistfetch(stockname):
     contentpredict = ast.literal_eval(dict_str)
     try:
         contentdict = contentpredict['Time Series (Daily)']
-    except:
-        print("ERROR: Apihistfetch API limit reached, cannot request for a minute.")
-        return {}
+    except KeyError:
+        raise RuntimeError("Apihistfetch API limit reached, cannot request for a minute.")
     else:
         return contentdict
 
 
+@lru_cache(maxsize=10)
 def Apioverfetch(stockname):
     querystring = {"function": "OVERVIEW", "symbol": stockname}
     response = requests.request("GET", url, headers=headers, params=querystring)
@@ -52,9 +53,8 @@ def Apioverfetch(stockname):
     contentdict = ast.literal_eval(dict_str)
     try:
         contentdict["Symbol"]
-    except:
-        print("ERROR: Apioverfetch API limit reached, cannot request for a minute.")
-        return {}
+    except KeyError:
+        raise RuntimeError("Apioverfetch API limit reached, cannot request for a minute.")
     else:
         return contentdict
 
@@ -70,9 +70,10 @@ def calcCloseAverage(dictOfDays):
 def stock_page(stockname):
     a = Apioverfetch(stockname)
     b = Apigenfetch(stockname)
+
     try:
         c = {**a, **b}
-    except a == {} or b == {}:
-        return {"errorAPI": "API Limit reached, try again in a minute"}
+    except RuntimeError:
+        return RuntimeError
     else:
         return c
