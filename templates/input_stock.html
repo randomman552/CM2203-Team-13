@@ -12,25 +12,21 @@
   <p class="lead">  Making the world of trading more efficient </p>
   </div>
 
-  <p class="h2">Please Fill The Boxes Below:</p>
+  <p class="h2">Please enter a stock below:</p>
 
-  <form method="POST" action "">
+  <form method="POST" action="">
     {{ form.hidden_tag() }}
     <div class="mb-3">
       {{ form.data1.label(class="form-label") }}
       {{ form.data1(class="form-control") }}
     </div>
-    <div class="mb-3">
-      {{ form.data2.label(class="form-label") }}
-      {{ form.data2(class="form-control") }}
-    </div>
 
     <div class="mb-3">
       {{form.submit(class="btn btn-primary") }}
-    </form>
+    </div>
+  </form>
 
 
 
-  </div>
 
 {% endblock content %}
