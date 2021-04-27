@@ -1,0 +1,100 @@
+Group 13 Informatics- Controlled Vocabulary
+12 terms for controlled vocabulary:
+Stock Market, Communication services, Consumer discretionary, Consumer staple, Energy, Financials, Healthcare, Industrials, Information Technology, Materials, Real Estate and Utilities.
+Hierarchical term list because there are parent child relationships between the Stock Market and all the sectors. Other components includes for breadth and depth are industries to show further parent child relationships (between sectors and industries).
+Definitions:
+Sector- “A sector is one of a few general segments in the economy within which a large group of companies can be categorized. An economy can be broken down into about a dozen sectors, which can describe nearly all of the business activity in that economy.”[1]
+Industry- “Industry refers to a specific group of companies that operate in a similar business sphere. Essentially, industries are created by breaking down sectors into more defined groupings. Therefore, these companies are divided into more specific groups than sectors. Each of the dozen or so sectors will have a varying number of industries, but it can be in the hundreds.”[1]
+Stock Market- “The stock market refers to the collection of markets and exchanges where regular activities of buying, selling, and issuance of shares of publicly-held companies take place.”[2]
+Format:
+Stock Market[3]
+•	Sector
+1.	Industry
+2.	Industry
+3.	Industry
+•	Communication services- “The Communications Services Sector contains companies that provide communications services primarily through a fixed-line, cellular, wireless, high bandwidth and/or fibre optic cable network”.[3]
+1.	Diversified Telecommunication Services
+2.	Entertainment
+3.	Interactive Media & Services
+4.	Media
+5.	Wireless Telecommunication Services
+•	Consumer discretionary- “The Consumer Discretionary Sector includes manufacturing & services. The manufacturing segment includes automotive, household durable goods, textiles & apparel, and leisure equipment. The services segment includes hotels, restaurants and other leisure facilities, media production and services, and consumer retailing and services.”[3]
+1.	Auto Components
+2.	Automobiles
+3.	Distributors
+4.	Diversified Consumer Services
+5.	Hotels, Restaurants & Leisure
+6.	Household Durables
+7.	Internet & Direct Marketing Retail
+8.	Leisure Products
+9.	Multiline Retail
+10.	Specialty Retail
+11.	Textiles, Apparel & Luxury Goods
+•	Consumer staples- “Includes manufacturers and distributors of food, beverages and tobacco and producers of non-durable household goods and personal products. It also includes food & drug retailing companies as well as hypermarkets and consumer super centres.”[3]
+1.	Beverages
+2.	Food & Staples Retailing
+3.	Food Products
+4.	Household Products
+5.	Personal Products
+6.	Tobacco
+•	Energy- “Includes companies whose businesses are dominated by either of the following activities: The construction or provision of oil rigs, drilling equipment and other energy related service and equipment, including seismic data collection. Companies engaged in the exploration, production, marketing, refining and/or transportation of oil and gas products, coal and other consumable fuels."[3]
+1.	Energy Equipment & Services
+2.	Oil, Gas & Consumable Fuels
+•	Financials- “The Financial Sector contains companies involved in activities such as banking, mortgage finance, consumer finance, specialized finance, investment banking and brokerage, asset management and custody, corporate lending, insurance, financial investment, real estate investment trusts (REITs), as well as companies engaged in real estate management & development.”[3]
+1.	Banks
+2.	Capital Markets
+3.	Consumer Finance
+4.	Diversified Financial Services
+5.	Insurance
+6.	Mortgage REITs
+7.	Thrifts & Mortgage Finance
+•	Healthcare- “The Health Care Sector encompasses two main industry groups. The first includes companies who manufacture health care equipment and supplies or provide health care related services, including distributors of health care products, providers of basic health-care services, and owners and operators of health care facilities and organizations. The second regroups companies primarily involved in the research, development, production and marketing of pharmaceuticals and biotechnology products.”[3]
+1.	Biotechnology
+2.	Healthcare Equipment & Supplies
+3.	Healthcare Providers & Services
+4.	Healthcare Technology
+5.	Life Sciences Tools & Services
+6.	Pharmaceuticals
+•	Industrials- “The Industrials Sector includes companies whose businesses are dominated by one of the following activities: The manufacture and distribution of capital goods, including aerospace & defence, construction, engineering & building products, electrical equipment and industrial machinery. The provision of commercial services and supplies, including printing, employment, environmental and office services. The provision of transportation services, including airlines, couriers, marine, road & rail and transportation infrastructure.”[3]
+1.	Aerospace & Defense
+2.	Air Freight & Logistics
+3.	Airlines
+4.	Building Products
+5.	Commercial Services &Supplies
+6.	Construction & Engineering
+7.	Electrical Equipment
+8.	Industrial Conglomerates
+9.	Machinery
+10.	Marine
+11.	Professional Services
+12.	Road & Rail
+13.	Trading Companies & Distributors
+14.	Transportation Infrastructure
+•	Information Technology- “The Information Technology Sector covers the following general areas: Technology Software & Services, including companies that primarily develop software in various fields such as the Internet, applications, systems, databases management and/or home entertainment, and companies that provide information technology consulting and services, as well as data processing and outsourced services; Technology Hardware & Equipment, including manufacturers and distributors of communications equipment, computers & peripherals, electronic equipment and related instruments; and, Semiconductors & Semiconductor Equipment Manufacturers.”[3]
+1.	Communications Equipment
+2.	Electronic Equipment Instruments & Components
+3.	IT Services
+4.	Semiconductors & Semiconductor Equipment
+5.	Software
+6.	Technology Hardware, Storage & Peripherals
+•	Materials- “The Materials Sector encompasses a wide range of commodity-related manufacturing industries; for example companies that manufacture chemicals, construction materials, glass, paper, forest products and related packaging products, and metals, minerals and mining companies, including producers of steel.”[3]
+1.	Chemicals 
+2.	Construction Materials
+3.	Containers & Packaging
+4.	Metals & Mining
+5.	Paper & Forest Products
+•	Real estate- “The Real Estate Sector contains all REITs, with the exception of Mortgage REITs, (which remain in the Financial sector). Additionally, the sector includes Real Estate Management and Development services.”[3]
+1.	Equity Real Estate Investment Trusts
+2.	Real Estate Management & Development
+•	Utilities- “Encompasses the companies that distribute or produce power; for example electric, gas or water.”[3]
+1.	Electric Utilities
+2.	Gas Utilities
+3.	Independent Power and Renewable Electricity Producers
+4.	Multi-Utilities
+5.	Water Utilities
+[3]
+References
+[1]- Industry vs. Sector: What's the difference? (investopedia.com)
+[2]- https://www.investopedia.com/terms/s/stockmarket.asp
+[3]- https://eresearch.fidelity.com/eresearch/markets_sectors/sectors/sectors_in_market.jhtml?tab=learn&sector=50
+
