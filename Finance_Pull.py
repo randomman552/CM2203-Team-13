@@ -1,15 +1,12 @@
 from functools import lru_cache
-from pprint import pprint
 
 import requests
 import ast
+import os
 
 url = "https://alpha-vantage.p.rapidapi.com/query"
 headers = {
-    'x-rapidapi-key': "d63b107930msh667bcccd45e4cc6p158fe8jsn4bc129f88ec1",
-    # Watson: f9230c8520msh42bb7e7174822d7p10904bjsn6d131581edfa
-    # Hayes: d63b107930msh667bcccd45e4cc6p158fe8jsn4bc129f88ec1
-    # Hayes2: dbd23c2e57msh0de22e14f38eda0p1c3f84jsn621b3a32ceab
+    'x-rapidapi-key': os.environ.get("rapidapi-key", ""),
     'x-rapidapi-host': "alpha-vantage.p.rapidapi.com"
 }
 
