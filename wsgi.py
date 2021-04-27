@@ -13,7 +13,7 @@ app.config['ML_SUMMARIES'] = get_summaries()
 
 # Error handling
 def generic_error_route(code, exception):
-    return render_template("error.html", code=code, text=str(exception))
+    return render_template("error.html", code=code, text=str(exception)), code
 
 
 @app.errorhandler(404)
