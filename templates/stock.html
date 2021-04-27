@@ -97,8 +97,14 @@
     <h4>Address</h4>
     <p>{{ stock["Address"] }}</p>
 
+    <h4>Stock Recommendation: </h4>
+    {% if stock_evaluation[0] == "good" %}
+      <p>  We recommended you invest in this stock! </p>
 
+    {% elif stock_evaluation[0] == "bad" %}
+      <p>  We do not recommend you invest in this stock! </p>
 
+    {% endif %}
 
 
 {% endblock content %}

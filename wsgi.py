@@ -34,7 +34,8 @@ def input_stock():
 @app.route("/stock/<stockTicker>")
 def input_stock_post(stockTicker):
     stock = stock_page(stockTicker)
-    return render_template('stock.html', title=stockTicker, stock=stock)
+    stock_evaluation = classify(app.config['ML_SUMMARIES'], fetch_stock(stockTicker))
+    return render_template('stock.html', title=stockTicker, stock=stock, stock_evaluation = stock_evaluation)
 
 
 @app.route("/evaluate/<symbol>")
