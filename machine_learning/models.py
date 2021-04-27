@@ -75,7 +75,10 @@ class Stock:
 
     @property
     def rolling_average_percent_inc(self) -> float:
-        return self.rolling_avg50 / self.rolling_avg200
+        try:
+            return self.rolling_avg50 / self.rolling_avg200
+        except ZeroDivisionError:
+            return 0
 
     @property
     def earnings_per_share(self) -> float:

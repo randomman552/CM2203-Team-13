@@ -14,19 +14,29 @@ headers = {
 }
 
 
+def data_check(content_dict):
+    """
+    Function to check content dict contains valid data.
+    Will raise exceptions otherwise:
+        LookupError - Data was not found or does not exist
+        RuntimeError - We encountered an API limit
+    """
+    if content_dict is None or len(content_dict) == 0:
+        raise LookupError("Data not found")
+    if "message" in content_dict:
+        raise RuntimeError("API limit reached")
+
+
 @lru_cache(maxsize=10)
 def Apigenfetch(stockname):
     querystring = {"function": "GLOBAL_QUOTE", "symbol": stockname}
     response = requests.request("GET", url, headers=headers, params=querystring)
     responsedict = response.__dict__['_content']
     dict_str = responsedict.decode("UTF-8")
-    contentpredict = ast.literal_eval(dict_str)
-    try:
-        contentdict = contentpredict['Global Quote']
-    except KeyError:
-        raise RuntimeError("Apigenfetch API limit reached, cannot request for a minute.")
-    else:
-        return contentdict
+    contentdict = ast.literal_eval(dict_str).get("Global Quote")
+
+    data_check(contentdict)
+    return contentdict
 
 
 @lru_cache(maxsize=10)
@@ -35,13 +45,10 @@ def Apihistfetch(stockname):
     response = requests.request("GET", url, headers=headers, params=querystring)
     responsedict = response.__dict__['_content']
     dict_str = responsedict.decode("UTF-8")
-    contentpredict = ast.literal_eval(dict_str)
-    try:
-        contentdict = contentpredict['Time Series (Daily)']
-    except KeyError:
-        raise RuntimeError("Apihistfetch API limit reached, cannot request for a minute.")
-    else:
-        return contentdict
+    contentdict = ast.literal_eval(dict_str).get("Time Series (Daily)")
+
+    data_check(contentdict)
+    return contentdict
 
 
 @lru_cache(maxsize=10)
@@ -51,20 +58,9 @@ def Apioverfetch(stockname):
     responsedict = response.__dict__['_content']
     dict_str = responsedict.decode("UTF-8")
     contentdict = ast.literal_eval(dict_str)
-    try:
-        contentdict["Symbol"]
-    except KeyError:
-        raise RuntimeError("Apioverfetch API limit reached, cannot request for a minute.")
-    else:
-        return contentdict
 
-
-def calcCloseAverage(dictOfDays):
-    average = 0
-    for x in dictOfDays:
-        average += float(dictOfDays[x]['4. close'])
-    average = average / len(dictOfDays)
-    return average
+    data_check(contentdict)
+    return contentdict
 
 
 def stock_page(stockname):

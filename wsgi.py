@@ -11,9 +11,19 @@ app.config['SECRET_KEY'] = '2c8553196a4dafa672b8c68d70a24e21eedb937d'
 app.config['ML_SUMMARIES'] = get_summaries()
 
 
+# Error handling
+def generic_error_route(code, exception):
+    return render_template("error.html", code=code, text=str(exception))
+
+
 @app.errorhandler(404)
-def api_fetch_failed(e):
-    return jsonify(error=str(e)), 404
+def error_404_route(e):
+    return generic_error_route(404, e)
+
+
+@app.errorhandler(500)
+def error_404_route(e):
+    return generic_error_route(500, e)
 
 
 @app.route("/")
@@ -46,8 +56,10 @@ def input_stock_post(stockTicker):
     try:
         stock_evaluation = classify(app.config['ML_SUMMARIES'], fetch_stock(stockTicker))
         stock = stock_page(stockTicker)
-    except RuntimeError:
-        abort(404, description="API fetch limit per min reached. Please wait a minute and try again.")
+    except RuntimeError as e:
+        abort(500, description=e.args[0])
+    except LookupError as e:
+        abort(404, description=e.args[0])
     else:
         return render_template('stock.html', title=stockTicker, stock=stock, stock_evaluation=stock_evaluation)
 
@@ -100,8 +112,10 @@ def output_stock_json(stockTicker):
                  }
              ]
              }
-    except RuntimeError:
-        abort(404, description="API Fetch limit reached.")
+    except RuntimeError as e:
+        abort(500, description=e.args[0])
+    except LookupError as e:
+        abort(404, description=e.args[0])
     else:
         return jsonify(out_dict)
 

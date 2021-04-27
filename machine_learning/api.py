@@ -13,7 +13,4 @@ def fetch_stock(stock_symbol: str):
     # history = Apihistfetch(stock_symbol)
     overview = Apioverfetch(stock_symbol)
 
-    if "You have exceeded the rate limit" in overview.get("message", ""):
-        raise TimeoutError("Exceeded rate limit")
-    else:
-        return Stock(overview)
+    return Stock(overview)
