@@ -72,7 +72,7 @@ class Stock:
 
     @property
     def rolling_average_percent_inc(self) -> float:
-        return (self.rolling_avg50 / self.rolling_avg200) * 100
+        return self.rolling_avg50 / self.rolling_avg200
 
     @property
     def class_val(self):
