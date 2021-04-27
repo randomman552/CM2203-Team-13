@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, Response, jsonify, abort
+from flask import Flask, render_template, request, session, redirect, url_for,Response, jsonify, abort
 from Finance_Pull import *
 from forms import InputStockForm
 from machine_learning.naive_bayes import classify, get_summaries
@@ -21,22 +21,34 @@ def api_fetch_failed(e):
 def home():
     return render_template('home.html', title='Home')
 
+@app.route("/")
+@app.route("/help")
+def help():
+    return render_template('help.html', title='Help Page')
+
 
 # TODO: Link this page to the stock page
 @app.route("/input_stock", methods=['GET', 'POST'])
 def input_stock():
     form = InputStockForm()
-    return render_template('input_stock.html', title='Input Stock', form=form)
+    if request.method == 'POST':
+        stock_name = request.form['stock_name']
+        session['stock_name'] = stock_name
+
+        return redirect(url_for('input_stock_post', stockTicker = session['stock_name']))
+    else:
+        return render_template('input_stock.html', title='Input Stock', form=form)
 
 
 @app.route("/stock/<stockTicker>")
 def input_stock_post(stockTicker):
+    stock_evaluation = classify(app.config['ML_SUMMARIES'], fetch_stock(stockTicker))
     try:
         stock = stock_page(stockTicker)
     except RuntimeError:
         abort(404, description="API Fetch limit reached.")
     else:
-        return render_template('stock.html', title=stockTicker, stock=stock, )
+        return render_template('stock.html', title=stockTicker, stock=stock, stock_evaluation=stock_evaluation)
 
 
 @app.route("/evaluate/<symbol>")
