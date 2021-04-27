@@ -103,8 +103,9 @@
 
     {% elif stock_evaluation[0] == "bad" %}
       <p>  We do not recommend you invest in this stock! </p>
-
     {% endif %}
+
+    <a href="{{ url_for('output_stock_json', stockTicker=title) }}">View machine readable as json</a>
 
 
 {% endblock content %}
