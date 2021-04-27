@@ -25,7 +25,10 @@ class Stock:
         :return: Tuple containing information useful to machine learning.
         """
         return tuple([
-            self.rolling_average_percent_inc
+            self.rolling_average_percent_inc,
+            self.earnings_per_share,
+            self.revenue_growth_yoy,
+            self.profit_margin
         ])
 
     def save(self, base_path: str = "./data"):
@@ -73,6 +76,18 @@ class Stock:
     @property
     def rolling_average_percent_inc(self) -> float:
         return self.rolling_avg50 / self.rolling_avg200
+
+    @property
+    def earnings_per_share(self) -> float:
+        return float(self.overview.get("EPS", 0))
+
+    @property
+    def revenue_growth_yoy(self) -> float:
+        return float(self.overview.get("QuarterlyRevenueGrowthYOY"))
+
+    @property
+    def profit_margin(self) -> float:
+        return float(self.overview.get("ProfitMargin"))
 
     @property
     def class_val(self):
