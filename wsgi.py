@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for,Response, jsonify, abort
+from flask import Flask, render_template, request, session, redirect, url_for, Response, jsonify, abort
 from Finance_Pull import *
 from forms import InputStockForm
 from machine_learning.naive_bayes import classify, get_summaries
@@ -21,6 +21,7 @@ def api_fetch_failed(e):
 def home():
     return render_template('home.html', title='Home')
 
+
 @app.route("/")
 @app.route("/help")
 def help():
@@ -35,20 +36,74 @@ def input_stock():
         stock_name = request.form['stock_name']
         session['stock_name'] = stock_name
 
-        return redirect(url_for('input_stock_post', stockTicker = session['stock_name']))
+        return redirect(url_for('input_stock_post', stockTicker=session['stock_name']))
     else:
         return render_template('input_stock.html', title='Input Stock', form=form)
 
 
 @app.route("/stock/<stockTicker>")
 def input_stock_post(stockTicker):
-    stock_evaluation = classify(app.config['ML_SUMMARIES'], fetch_stock(stockTicker))
+    try:
+        stock_evaluation = classify(app.config['ML_SUMMARIES'], fetch_stock(stockTicker))
+        stock = stock_page(stockTicker)
+    except RuntimeError:
+        abort(404, description="API fetch limit per min reached. Please wait a minute and try again.")
+    else:
+        return render_template('stock.html', title=stockTicker, stock=stock, stock_evaluation=stock_evaluation)
+
+
+@app.route("/stock/<stockTicker>.json")
+def output_stock_json(stockTicker):
     try:
         stock = stock_page(stockTicker)
+        out_dict = \
+            {"@context": "https://schema.org",
+             "@type": "Corporation",
+             "tickerSymbol": stock["Symbol"],
+             "Name": stock["Name"],
+             "tickerValues": [
+                 {
+                     '@type': "PriceSpecification",
+                     'price': stock['08. previous close']},
+                 {
+                     '@type': "PriceSpecification",
+                     'price': stock['02. open']},
+                 {
+                     '@type': "AggregateOffer",
+                     'lowPrice': stock['04. low'],
+                     'highPrice': stock['03. high']},
+                 {
+                     '@type': "AggregateOffer",
+                     'lowPrice': stock["52WeekLow"],
+                     'highPrice': stock["52WeekHigh"]},
+                 {
+                     '@type': "PriceSpecification",
+                     'price': stock["50DayMovingAverage"]},
+                 {
+                     '@type': "PriceSpecification",
+                     'price': stock["200DayMovingAverage"]},
+                 {
+                     "@type": "PropertyValue",
+                     "value": stock["MarketCapitalization"]},
+                 {
+                     '@type': "AggregateOffer",
+                     'offerCount': stock['06. volume']},
+                 {
+                     "@type": "PriceSpecification",
+                     "price": stock["EPS"]},
+                 {
+                     "@type": "PriceSpecification",
+                     "price": stock["PERatio"]},
+                 {
+                     "@type": "Order",
+                     "discount": stock['09. change'],
+                 }
+             ]
+             }
     except RuntimeError:
         abort(404, description="API Fetch limit reached.")
     else:
-        return render_template('stock.html', title=stockTicker, stock=stock, stock_evaluation=stock_evaluation)
+        return jsonify(out_dict)
 
 
 @app.route("/evaluate/<symbol>")

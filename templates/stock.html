@@ -25,35 +25,35 @@
         <p style="display: inline-block"><b>Sector</b>: {{ stock["Sector"] }}</p>
         <p style="display: inline-block">| <b>Industry</b>: {{ stock["Industry"] }}</p>
     </div>
-    <div style="display: inline-block" typeof="PriceSpecification">
+    <div style="display: inline-block">
         <table>
             <tr>
                 <td class="td-heading">Previous Close</td>
-                <td property="price">{{ stock['08. previous close']}}</td>
+                <td property="price" typeof="PriceSpecification">{{ stock['08. previous close']}}</td>
             </tr>
             <tr>
                 <td class="td-heading">Open</td>
-                <td property="price">{{ stock['02. open'] }}</td>
+                <td property="price" typeof="PriceSpecification">{{ stock['02. open'] }}</td>
             </tr>
             <tr>
                 <td>Day low</td>
-                <td property="minPrice">{{ stock['04. low'] }}</td>
+                <td property="minPrice" typeof="AggregateOffer">{{ stock['04. low'] }}</td>
             </tr>
             <tr>
                 <td class="td-heading">Day high</td>
-                <td property="maxPrice">{{ stock['03. high'] }}</td>
+                <td property="maxPrice" typeof="AggregateOffer">{{ stock['03. high'] }}</td>
             </tr>
             <tr>
                 <td class="td-heading">52-week low</td>
-                <td property="maxPrice">{{ stock["52WeekLow"] }}</td>
+                <td property="minPrice" typeof="AggregateOffer">{{ stock["52WeekLow"] }}</td>
             </tr>
             <tr>
                 <td class="td-heading">52-week high</td>
-                <td property="maxPrice">{{ stock["52WeekHigh"] }}</td>
+                <td property="maxPrice" typeof="AggregateOffer">{{ stock["52WeekHigh"] }}</td>
             </tr>
             <tr>
                 <td class="td-heading">50 Day rolling</td>
-                <td property="price">{{ stock["50DayMovingAverage"] }}</td>
+                <td property="price" typeof="PriceSpecification">{{ stock["50DayMovingAverage"] }}</td>
             </tr>
         </table>
     </div>
@@ -73,11 +73,11 @@
             </tr>
             <tr>
                 <td class="td-heading">EPS</td>
-                <td property="Monetary Amount" typeof="value">{{ stock["EPS"] }}</td>
+                <td property="price" typeof="value">{{ stock["EPS"] }}</td>
             </tr>
             <tr>
                 <td class="td-heading">PE ratio</td>
-                <td property="Monetary Amount" typeof="value">{{ stock["PERatio"] }}</td>
+                <td property="price" typeof="value">{{ stock["PERatio"] }}</td>
             </tr>
             <tr>
                 <td class="td-heading">Change percent</td>
