@@ -4,14 +4,14 @@
 {% block content %}
 <div class="px-4 py-5 my-5 text-center">
   <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename = 'img/default_logo.png') }}" alt="" width="92" height="77">
-  <h1 class="display-5 fw-bold"> Tyrell Corp</h1>
+  <h1 class="display-5 fw-bold"> Informatics Team 13</h1>
 <div class="col-lg-6 mx-auto">
-  <p class="lead mb-4">Since 2001, it has been our duty to provide the best stock related information to suit your needs.
+  <p class="lead mb-4">Through hardwork and dilligence, Informatics Team 13 are happy to provide you a world-class Stock Reccommendation system.
   With accurate machine learning algorithms, we are sure to share with you our in-depth knowledge of the trading world. </p>
   <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
 
       <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3" onclick="window.location.href='{{url_for('input_stock')}}';">Start Here!</button>
-
+      <button type="button" class="btn btn-outline-secondary btn-lg px-4" onclick="window.location.href='{{url_for('help')}}';">Help Page</button>
    <!-- <button type="button" class="btn btn-outline-secondary btn-lg px-4">Help</button> --> <!-- "A second, optional button with less aesthetic important, if neccessary!" -->
   </div>
 </div>

@@ -16,6 +16,11 @@ app.config['ML_SUMMARIES'] = get_summaries()
 def home():
     return render_template('home.html', title='Home')
 
+@app.route("/")
+@app.route("/help")
+def help():
+    return render_template('help.html', title='Help Page')
+
 
 # TODO: Link this page to the stock page
 @app.route("/input_stock", methods=['GET', 'POST'])
