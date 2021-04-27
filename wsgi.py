@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, url_for
 from Finance_Pull import *
 from forms import InputStockForm
 from machine_learning.naive_bayes import classify, get_summaries
@@ -21,7 +21,14 @@ def home():
 @app.route("/input_stock", methods=['GET', 'POST'])
 def input_stock():
     form = InputStockForm()
-    return render_template('input_stock.html', title='Input Stock', form=form)
+    if request.method == 'POST':
+        stock_name = request.form['stock_name']
+        session['stock_name'] = stock_name
+
+        return redirect(url_for('input_stock_post', stockTicker = session['stock_name']))
+    else:
+        return render_template('input_stock.html', title='Input Stock', form=form)
+
 
 
 @app.route("/stock/<stockTicker>")
@@ -33,6 +40,7 @@ def input_stock_post(stockTicker):
 @app.route("/evaluate/<symbol>")
 def evaluate_stock(symbol: str):
     return str(classify(app.config['ML_SUMMARIES'], fetch_stock(symbol)))
+
 
 
 if __name__ == '__main__':

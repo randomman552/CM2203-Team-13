@@ -14,11 +14,11 @@
 
   <p class="h2">Please enter a stock below:</p>
 
-  <form method="POST" action="">
+  <form method="POST" action "{{ url_for('input_stock') }}">
     {{ form.hidden_tag() }}
     <div class="mb-3">
-      {{ form.data1.label(class="form-label") }}
-      {{ form.data1(class="form-control") }}
+      {{ form.stock_name.label(class="form-label") }}
+      {{ form.stock_name(class="form-control") }}
     </div>
 
     <div class="mb-3">
