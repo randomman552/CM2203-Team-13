@@ -4,6 +4,6 @@ from wtforms.validators import DataRequired, Length
 
 
 class InputStockForm(FlaskForm):
-    data1 = StringField('Stock Symbol', validators=[DataRequired(), Length(min=2, max=50)])
+    stock_name = StringField('Stock Name', validators=[DataRequired(), Length(min=2, max = 50)])
 
     submit = SubmitField('Load Data')
