@@ -1,6 +1,6 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, request
+from Finance_Pull import *
 from forms import InputStockForm
-
 from machine_learning.naive_bayes import classify, get_summaries
 from machine_learning.api import fetch_stock
 
@@ -17,10 +17,17 @@ def home():
     return render_template('home.html', title='Home')
 
 
+# TODO: Link this page to the stock page
 @app.route("/input_stock", methods=['GET', 'POST'])
 def input_stock():
     form = InputStockForm()
     return render_template('input_stock.html', title='Input Stock', form=form)
+
+
+@app.route("/stock/<stockTicker>")
+def input_stock_post(stockTicker):
+    stock = stock_page(stockTicker)
+    return render_template('stock.html', title=stockTicker, stock=stock)
 
 
 @app.route("/evaluate/<symbol>")
