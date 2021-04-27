@@ -1,7 +1,6 @@
 import json
 
 
-# TODO: Check which attributes would be best to compare
 class Stock:
     """
     Class that wraps around the dicts given to us by the API and represents a stock.
